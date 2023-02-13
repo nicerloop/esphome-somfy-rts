@@ -19,6 +19,11 @@ public:
         remote->setup();
     }
 
+    std::string get_device_class()
+    {
+        return "shutter";
+    }
+
     CoverTraits get_traits() override
     {
         auto traits = CoverTraits();
@@ -60,6 +65,7 @@ class SomfyArduinoRemote : public Component
 {
 private:
     byte emitterPin;
+
 public:
     std::vector<esphome::cover::Cover *> covers;
 
