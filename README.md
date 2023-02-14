@@ -26,7 +26,7 @@ Edit `esphome-somfy-rts.yaml` to adapt `new SomfyArduinoRemote(D1, 16)` line 33:
 
 Add or remove covers and prog buttons by copy/paste/rename to match the declared channel count.
 
-If you want to flash multiple ESPHome devices with the same firmware for use on the same network, you can enable `name_add_mac_suffix` on line 3 to have the device named `somfy-rts-XXXXXX` (where XXXXXX is [the 6 last characters of the WiFi MAC address in hexadecimal](https://esphome.io/components/esphome.html#esphome-mac-suffix))
+If you want to flash multiple ESPHome devices with the same firmware for use on the same network, you can enable `name_add_mac_suffix` on line 3 to have the device named `somfy-rts-XXXXXX` (where XXXXXX is [the 6 last characters of the WiFi MAC address in hexadecimal](https://esphome.io/components/esphome.html#esphome-mac-suffix)). The device URL will be http://somfy-rts-XXXXXX.local.
 
 ## Installation
 ```bash
@@ -34,7 +34,7 @@ esphome run esphome-somfy-rts.yaml
 ```
 ## Network setup
 
-The ESPHome device is sertup with either:
+The ESPHome device is setup with either:
 - a [captive WiFi access point](https://esphome.io/components/captive_portal.html) from which to configure the WiFi client
 - an [Improv WiFi](https://www.improv-wifi.com) serial server to configure the WiFi client from the USB/serial interface
 
