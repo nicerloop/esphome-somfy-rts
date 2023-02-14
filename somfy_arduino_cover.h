@@ -11,8 +11,11 @@ private:
     EEPROMRollingCodeStorage *storage;
 
 public:
+    uint32_t remoteCode;
+    int eepromAddress;
+
     SomfyArduinoCover(byte emitterPin, uint32_t remoteCode, int eepromAddress)
-        : Cover()
+        : Cover(), remoteCode(remoteCode), eepromAddress(eepromAddress)
     {
         set_device_class("shutter");
         storage = new EEPROMRollingCodeStorage(eepromAddress);
@@ -54,6 +57,13 @@ public:
     void program()
     {
         remote->sendCommand(Command::Prog);
+    }
+
+    int rollingCode()
+    {
+        uint16_t rollingCode;
+        EEPROM.get(eepromAddress, rollingCode);
+        return rollingCode;
     }
 };
 
