@@ -14,14 +14,10 @@ public:
     SomfyArduinoCover(byte emitterPin, uint32_t remoteCode, int eepromAddress)
         : Cover()
     {
+        set_device_class("shutter");
         storage = new EEPROMRollingCodeStorage(eepromAddress);
         remote = new SomfyRemote(emitterPin, remoteCode, storage);
         remote->setup();
-    }
-
-    std::string get_device_class()
-    {
-        return "shutter";
     }
 
     CoverTraits get_traits() override
