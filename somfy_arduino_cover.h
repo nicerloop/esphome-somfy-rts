@@ -89,7 +89,7 @@ public:
     {
         uint8_t mac[6];
         get_mac_address_raw(mac);
-        uint32_t remoteCode = (((uint32_t)mac[3]) << 16) & (((uint32_t)mac[4]) << 8) & ((uint32_t)mac[5]);
+        uint32_t remoteCode = (((uint32_t)mac[3]) << 16) | (((uint32_t)mac[4]) << 8) | ((uint32_t)mac[5]);
         return remoteCode;
     }
 
