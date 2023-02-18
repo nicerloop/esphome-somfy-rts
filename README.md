@@ -26,8 +26,6 @@ Edit `esphome-somfy-rts.yaml` to adapt `new SomfyArduinoRemote(D1, 16)` line 33:
 
 Add or remove covers and prog buttons by copy/paste/rename to match the declared channel count.
 
-If you want to flash multiple ESPHome devices with the same firmware for use on the same network, you can enable `name_add_mac_suffix` on line 3 to have the device named `somfy-rts-XXXXXX` (where XXXXXX is [the 6 last characters of the WiFi MAC address in hexadecimal](https://esphome.io/components/esphome.html#esphome-mac-suffix)). The device URL will be http://somfy-rts-XXXXXX.local.
-
 ## Installation
 ```bash
 esphome run esphome-somfy-rts.yaml
@@ -39,7 +37,7 @@ The ESPHome device is setup with either:
 - an [Improv WiFi](https://www.improv-wifi.com) serial server to configure the WiFi client from the USB/serial interface
 
 To use the [ESPHome captive WiFi access point](https://esphome.io/components/captive_portal.html):
-- connect to the open WiFi network named `somfy-rts`
+- connect to the open WiFi network named `somfy-rts-XXXXXX` (where XXXXXX is [the 6 last characters of the WiFi MAC address in hexadecimal](https://esphome.io/components/esphome.html#esphome-mac-suffix))
 - the web interface should open automatically; if that does not work, you can navigate to http://192.168.4.1/ manually in your browser
 - select your WiFi network and procide the credentials
 
@@ -59,4 +57,4 @@ Each channel is materialized as:
 - one [cover](https://www.home-assistant.io/integrations/cover/) with assumed state and Up, Stop, Down buttons
 - one 'Prog' [button](https://www.home-assistant.io/integrations/button/)
 
-These moterializations are also available through the [ESPHome web server](https://esphome.io/components/web_server.html) directly from the ESP device (default: http://somfy-rts.local)
+These moterializations are also available through the [ESPHome web server](https://esphome.io/components/web_server.html) directly from the ESP device (default: http://somfy-rts-XXXXXX.local)
