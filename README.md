@@ -57,4 +57,4 @@ Each channel is materialized as:
 - one [cover](https://www.home-assistant.io/integrations/cover/) with assumed state and Up, Stop, Down buttons
 - one 'Prog' [button](https://www.home-assistant.io/integrations/button/)
 
-These moterializations are also available through the [ESPHome web server](https://esphome.io/components/web_server.html) directly from the ESP device (default: http://somfy-rts-XXXXXX.local)
+These materializations are also available through the [ESPHome web server](https://esphome.io/components/web_server.html) directly from the ESP device (default: http://somfy-rts-XXXXXX.local)
