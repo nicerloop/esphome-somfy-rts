@@ -1,5 +1,6 @@
 esphome:
   name: somfy-rts
+  friendly_name: Somfy RTS
   name_add_mac_suffix: true
   libraries:
     - EEPROM
@@ -14,7 +15,7 @@ logger:
 
 wifi:
   ap:
-  use_address: "" # to benefit from name_add_mac_suffix
+  use_address: "" # to benefit from name_add_mac_suffix, makes devices undiscoverable for cli ota
 captive_portal:
 improv_serial:
 
