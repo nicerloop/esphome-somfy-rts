@@ -15,11 +15,9 @@ logger:
 
 wifi:
   ap:
-  use_address: "" # to benefit from name_add_mac_suffix, makes devices undiscoverable for cli ota
 captive_portal:
 improv_serial:
 
-ota:
 web_server:
   local: true
   css_url: ""
