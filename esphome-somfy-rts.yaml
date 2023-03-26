@@ -14,9 +14,8 @@ esp8266:
 logger:
 
 wifi:
-  ap:
-captive_portal:
-improv_serial:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
 
 web_server:
   local: true
@@ -28,8 +27,10 @@ api:
 cover:
   - platform: custom
     lambda: |-
-      EEPROM.begin(32);
-      auto somfy_remote = new SomfyArduinoRemote(D1, 16);
+      byte emitter_pin = D1;
+      int cover_count = 16;
+      EEPROM.begin(16 * sizeof(uint16_t));
+      auto somfy_remote = new SomfyArduinoRemote(emitter_pin, cover_count);
       App.register_component(somfy_remote);
       return somfy_remote->covers;
     covers:
