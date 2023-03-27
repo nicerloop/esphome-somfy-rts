@@ -5,6 +5,11 @@ Tailored to turn my [box TOST Corp.](https://www.tostcorp.com/box-somfy-rts) int
 
 Derived from [Evgeni Golov's ESPHome Somfy RTS config for ESP32](https://www.die-welt.net/2021/06/controlling-somfy-roller-shutters-using-an-esp32-and-esphome/).
 
+## Warning
+The ESPHome device will store RTS rolling codes in flash memory. Be carefull when re-flashing the device or you will loose you remote channel associations and waste a channel registration in your covers.
+
+To avoid any problem, you can [Unregister remote channel](#unregister-remote-channel) for all registered covers before any flash modifications.
+
 ## Software
 - [Home Assistant](https://www.home-assistant.io)
 - [ESPHome](https://esphome.io)
@@ -18,7 +23,7 @@ Derived from [Evgeni Golov's ESPHome Somfy RTS config for ESP32](https://www.die
     - 433.42 Mhz crystal (Somfy RTS specific frequency)
     - (optional) 433MHz helical antenna
 
-## Configuration
+## Somfy RTS configuration
 Edit `esphome-somfy-rts.yaml` to adapt:
 - emitter pin (line 31, default: D1)
 - channel count (line 32, default: 16)
@@ -37,7 +42,7 @@ Copy secrets.yaml.example to secrets.yaml and edit:
 esphome run esphome-somfy-rts.yaml
 ```
 
-## Usage
+## Connection
 The [ESPHome](https://esphome.io) device is automatically exposed any [Home Assistant](https://www.home-assistant.io) instance using the [native API](https://esphome.io/components/api.html).
 
 Note that the default [native API](https://esphome.io/components/api.html) configuration make the ESP reboot automatically when no client is connected to the API for 15 minutes.
@@ -47,3 +52,15 @@ Each channel is materialized as:
 - one 'Prog' [button](https://www.home-assistant.io/integrations/button/)
 
 These materializations are also available through the [ESPHome web server](https://esphome.io/components/web_server.html) directly from the ESP device (default: http://somfy-rts-XXXXXX.local where XXXXXX is [the 6 last characters of the WiFi MAC address in hexadecimal](https://esphome.io/components/esphome.html#esphome-mac-suffix))
+
+## Register remote channel
+To register one channel to control a cover:
+1. set the cover half-open, with room for up and down move
+2. press PROG for 5 seconds on an already paired cover remote
+3. the cover will shortly move up and down to acknowledge switching to PROG mode
+4. press PROG on the desired remote or channel button
+3. the cover will shortly move up and down to acknowledge registering the new remote
+
+## Unregister remote channel
+Replay the same steps as for registering the remote channel. After the second acknowledgement, the remote channel will be unregistered from the cover.
+
