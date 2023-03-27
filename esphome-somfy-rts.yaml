@@ -68,12 +68,6 @@ cover:
         name: "Cover 16"
 
 button:
-  - platform: restart
-    name: Restart
-  - platform: shutdown
-    name: Shutdown
-  - platform: factory_reset
-    name: Factory reset
   - platform: template
     name: "Cover 01 Prog"
     entity_category: config
