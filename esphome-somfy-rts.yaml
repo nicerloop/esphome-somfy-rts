@@ -29,7 +29,7 @@ cover:
     lambda: |-
       byte emitter_pin = D1;
       int cover_count = 16;
-      EEPROM.begin(16 * sizeof(uint16_t));
+      EEPROM.begin(cover_count * sizeof(uint16_t));
       auto somfy_remote = new SomfyArduinoRemote(emitter_pin, cover_count);
       App.register_component(somfy_remote);
       return somfy_remote->covers;
