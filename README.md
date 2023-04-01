@@ -25,22 +25,32 @@ To avoid any problem, you can [Unregister remote channel](#unregister-remote-cha
 
 ## Somfy RTS configuration
 Edit `esphome-somfy-rts.yaml` to adapt:
-- emitter pin (line 31, default: D1)
-- channel count (line 32, default: 16)
+- emitter pin (line 35, default: D1)
+- channel count (line 36, default: 16)
 
 Add or remove covers and prog buttons by copy/paste/rename to match the declared channel count.
-
-## Network setup
-EEPROM use conflicts with dynamic WiFi settings storage. Captive portal and Improv WiFi cannot be used.
-
-Copy secrets.yaml.example to secrets.yaml and edit:
-- WiFi SSID (line 1, wifi_ssid)
-- WiFi password (line 2, wifi_password)
 
 ## Installation
 ```bash
 esphome run esphome-somfy-rts.yaml
 ```
+
+## Network setup
+
+The ESPHome device is setup with either:
+- a [captive WiFi access point](https://esphome.io/components/captive_portal.html) from which to configure the WiFi client
+- an [Improv WiFi](https://www.improv-wifi.com) serial server to configure the WiFi client from the USB/serial interface
+
+To use the [ESPHome captive WiFi access point](https://esphome.io/components/captive_portal.html):
+- connect to the open WiFi network named `somfy-rts-XXXXXX` (where XXXXXX is [the 6 last characters of the WiFi MAC address in hexadecimal](https://esphome.io/components/esphome.html#esphome-mac-suffix))
+- the web interface should open automatically; if that does not work, you can navigate to http://192.168.4.1/ manually in your browser
+- select your WiFi network and provide the credentials
+
+![ESPHome captive portal UI](https://esphome.io/_images/captive_portal-ui.png)
+
+To use [Improv WiFi serial](https://www.improv-wifi.com/serial/) configuration, you can use:
+- the [Improv WiFi webapp](https://www.improv-wifi.com/) from a WebSerial supporting browser (Google Chrome, Microsoft Edge and other browsers based on the Blink engine)
+- the [Improv WiFi serial client](https://github.com/nicerloop/improv-wifi-serial-client) from the command line
 
 ## Connection
 The [ESPHome](https://esphome.io) device is automatically exposed any [Home Assistant](https://www.home-assistant.io) instance using the [native API](https://esphome.io/components/api.html).
@@ -51,7 +61,7 @@ Each channel is materialized as:
 - one [cover](https://www.home-assistant.io/integrations/cover/) with assumed state and Up, Stop, Down buttons
 - one 'Prog' [button](https://www.home-assistant.io/integrations/button/)
 
-These materializations are also available through the [ESPHome web server](https://esphome.io/components/web_server.html) directly from the ESP device (default: http://somfy-rts-XXXXXX.local where XXXXXX is [the 6 last characters of the WiFi MAC address in hexadecimal](https://esphome.io/components/esphome.html#esphome-mac-suffix))
+These materializations are also available through the [ESPHome web server](https://esphome.io/components/web_server.html) directly from the ESP device (default: http://somfy-rts-XXXXXX.local)
 
 ## Register remote channel
 To register one channel to control a cover:
@@ -63,4 +73,3 @@ To register one channel to control a cover:
 
 ## Unregister remote channel
 Replay the same steps as for registering the remote channel. After the second acknowledgement, the remote channel will be unregistered from the cover.
-
