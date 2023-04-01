@@ -5,7 +5,7 @@
 #define COVER_UNKNOWN 0.5f
 #define TAG "somfy"
 
-class SomfyArduinoCover : public Cover
+class SomfyEsphomeCover : public Cover
 {
 private:
     SomfyRemote *remote;
@@ -13,7 +13,7 @@ private:
 public:
     uint32_t remoteCode;
 
-    SomfyArduinoCover(byte emitterPin, uint32_t remoteCode, RollingCodeStorage *storage)
+    SomfyEsphomeCover(byte emitterPin, uint32_t remoteCode, RollingCodeStorage *storage)
         : Cover(), remoteCode(remoteCode)
     {
         set_device_class("shutter");
@@ -88,7 +88,7 @@ public:
     }
 };
 
-class SomfyArduinoRemote : public Component
+class SomfyEsphomeRemote : public Component
 {
 private:
     byte emitterPin;
@@ -96,14 +96,14 @@ private:
 public:
     std::vector<esphome::cover::Cover *> covers;
 
-    SomfyArduinoRemote(byte emitterPin, int coverCount = 0)
+    SomfyEsphomeRemote(byte emitterPin, int coverCount = 0)
         : Component(), emitterPin(emitterPin)
     {
         uint32_t remoteCode = remoteCodeFromMac();
         for (int i = 0; i < coverCount; i++)
         {
             auto storage = new PreferencesRollingCodeStorage(remoteCode);
-            auto cover = new SomfyArduinoCover(emitterPin, remoteCode, storage);
+            auto cover = new SomfyEsphomeCover(emitterPin, remoteCode, storage);
             covers.push_back(cover);
             remoteCode++;
         }

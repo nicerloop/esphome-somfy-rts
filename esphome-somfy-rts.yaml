@@ -29,7 +29,7 @@ cover:
     lambda: |-
       byte emitter_pin = D1;
       int cover_count = 16;
-      auto somfy_remote = new SomfyArduinoRemote(emitter_pin, cover_count);
+      auto somfy_remote = new SomfyEsphomeRemote(emitter_pin, cover_count);
       App.register_component(somfy_remote);
       return somfy_remote->covers;
     covers:
@@ -73,109 +73,109 @@ button:
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_01))->program();
+          ((SomfyEsphomeCover*)id(cover_01))->program();
   - platform: template
     name: "Cover 02 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_02))->program();
+          ((SomfyEsphomeCover*)id(cover_02))->program();
   - platform: template
     name: "Cover 03 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_03))->program();
+          ((SomfyEsphomeCover*)id(cover_03))->program();
   - platform: template
     name: "Cover 04 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_04))->program();
+          ((SomfyEsphomeCover*)id(cover_04))->program();
   - platform: template
     name: "Cover 05 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_05))->program();
+          ((SomfyEsphomeCover*)id(cover_05))->program();
   - platform: template
     name: "Cover 06 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_06))->program();
+          ((SomfyEsphomeCover*)id(cover_06))->program();
   - platform: template
     name: "Cover 07 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_07))->program();
+          ((SomfyEsphomeCover*)id(cover_07))->program();
   - platform: template
     name: "Cover 08 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_08))->program();
+          ((SomfyEsphomeCover*)id(cover_08))->program();
   - platform: template
     name: "Cover 09 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_09))->program();
+          ((SomfyEsphomeCover*)id(cover_09))->program();
   - platform: template
     name: "Cover 10 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_10))->program();
+          ((SomfyEsphomeCover*)id(cover_10))->program();
   - platform: template
     name: "Cover 11 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_11))->program();
+          ((SomfyEsphomeCover*)id(cover_11))->program();
   - platform: template
     name: "Cover 12 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_12))->program();
+          ((SomfyEsphomeCover*)id(cover_12))->program();
   - platform: template
     name: "Cover 13 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_13))->program();
+          ((SomfyEsphomeCover*)id(cover_13))->program();
   - platform: template
     name: "Cover 14 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_14))->program();
+          ((SomfyEsphomeCover*)id(cover_14))->program();
   - platform: template
     name: "Cover 15 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_15))->program();
+          ((SomfyEsphomeCover*)id(cover_15))->program();
   - platform: template
     name: "Cover 16 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
-          ((SomfyArduinoCover*)id(cover_16))->program();
+          ((SomfyEsphomeCover*)id(cover_16))->program();
