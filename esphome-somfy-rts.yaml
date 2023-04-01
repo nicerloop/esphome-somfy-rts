@@ -3,10 +3,11 @@ esphome:
   friendly_name: Somfy RTS
   name_add_mac_suffix: true
   libraries:
-    - EEPROM
-    - legion2/Somfy_Remote_Lib@0.4.1
+  - EEPROM
+  - legion2/Somfy_Remote_Lib@0.4.1
   includes:
-    - somfy_esphome_cover.h
+  - somfy_esphome_cover.h
+  min_version: 2023.2.0
 
 esp8266:
   board: d1_mini
@@ -15,170 +16,172 @@ logger:
 
 wifi:
   ap:
-  use_address: "" # to benefit from name_add_mac_suffix
+  use_address: '' # to benefit from name_add_mac_suffix
 captive_portal:
 improv_serial:
+  next_url: http://{{device_name}}.local
 
 web_server:
   local: true
-  css_url: ""
-  js_url: ""
+  css_url: ''
+  js_url: ''
   ota: false
 
 api:
 
 cover:
-  - platform: custom
-    lambda: |-
-      byte emitter_pin = D1;
-      int cover_count = 16;
-      auto somfy_remote = new SomfyEsphomeRemote(emitter_pin, cover_count);
-      App.register_component(somfy_remote);
-      return somfy_remote->covers;
-    covers:
-      - id: "cover_01"
-        name: "Cover 01"
-      - id: "cover_02"
-        name: "Cover 02"
-      - id: "cover_03"
-        name: "Cover 03"
-      - id: "cover_04"
-        name: "Cover 04"
-      - id: "cover_05"
-        name: "Cover 05"
-      - id: "cover_06"
-        name: "Cover 06"
-      - id: "cover_07"
-        name: "Cover 07"
-      - id: "cover_08"
-        name: "Cover 08"
-      - id: "cover_09"
-        name: "Cover 09"
-      - id: "cover_10"
-        name: "Cover 10"
-      - id: "cover_11"
-        name: "Cover 11"
-      - id: "cover_12"
-        name: "Cover 12"
-      - id: "cover_13"
-        name: "Cover 13"
-      - id: "cover_14"
-        name: "Cover 14"
-      - id: "cover_15"
-        name: "Cover 15"
-      - id: "cover_16"
-        name: "Cover 16"
+- platform: custom
+  lambda: |-
+    byte emitter_pin = D1;
+    int cover_count = 16;
+    auto somfy_remote = new SomfyEsphomeRemote(emitter_pin, cover_count);
+    App.register_component(somfy_remote);
+    return somfy_remote->covers;
+  covers:
+  - id: cover_01
+    name: Cover 01
+  - id: cover_02
+    name: Cover 02
+  - id: cover_03
+    name: Cover 03
+  - id: cover_04
+    name: Cover 04
+  - id: cover_05
+    name: Cover 05
+  - id: cover_06
+    name: Cover 06
+  - id: cover_07
+    name: Cover 07
+  - id: cover_08
+    name: Cover 08
+  - id: cover_09
+    name: Cover 09
+  - id: cover_10
+    name: Cover 10
+  - id: cover_11
+    name: Cover 11
+  - id: cover_12
+    name: Cover 12
+  - id: cover_13
+    name: Cover 13
+  - id: cover_14
+    name: Cover 14
+  - id: cover_15
+    name: Cover 15
+  - id: cover_16
+    name: Cover 16
 
 button:
-  - platform: template
-    name: "Cover 01 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_01))->program();
-  - platform: template
-    name: "Cover 02 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_02))->program();
-  - platform: template
-    name: "Cover 03 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_03))->program();
-  - platform: template
-    name: "Cover 04 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_04))->program();
-  - platform: template
-    name: "Cover 05 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_05))->program();
-  - platform: template
-    name: "Cover 06 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_06))->program();
-  - platform: template
-    name: "Cover 07 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_07))->program();
-  - platform: template
-    name: "Cover 08 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_08))->program();
-  - platform: template
-    name: "Cover 09 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_09))->program();
-  - platform: template
-    name: "Cover 10 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_10))->program();
-  - platform: template
-    name: "Cover 11 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_11))->program();
-  - platform: template
-    name: "Cover 12 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_12))->program();
-  - platform: template
-    name: "Cover 13 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_13))->program();
-  - platform: template
-    name: "Cover 14 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_14))->program();
-  - platform: template
-    name: "Cover 15 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_15))->program();
-  - platform: template
-    name: "Cover 16 Prog"
-    entity_category: config
-    icon: "mdi:wrench"
-    on_press:
-      - lambda: |-
-          ((SomfyEsphomeCover*)id(cover_16))->program();
+- platform: template
+  name: Cover 01 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_01))->program();
+- platform: template
+  name: Cover 02 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_02))->program();
+- platform: template
+  name: Cover 03 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_03))->program();
+- platform: template
+  name: Cover 04 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_04))->program();
+- platform: template
+  name: Cover 05 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_05))->program();
+- platform: template
+  name: Cover 06 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_06))->program();
+- platform: template
+  name: Cover 07 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_07))->program();
+- platform: template
+  name: Cover 08 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_08))->program();
+- platform: template
+  name: Cover 09 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_09))->program();
+- platform: template
+  name: Cover 10 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_10))->program();
+- platform: template
+  name: Cover 11 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_11))->program();
+- platform: template
+  name: Cover 12 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_12))->program();
+- platform: template
+  name: Cover 13 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_13))->program();
+- platform: template
+  name: Cover 14 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_14))->program();
+- platform: template
+  name: Cover 15 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_15))->program();
+- platform: template
+  name: Cover 16 Prog
+  entity_category: config
+  icon: mdi:wrench
+  on_press:
+  - lambda: |-
+      ((SomfyEsphomeCover*)id(cover_16))->program();
+
