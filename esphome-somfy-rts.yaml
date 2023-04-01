@@ -14,13 +14,16 @@ esp8266:
 logger:
 
 wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
+  ap:
+  use_address: "" # to benefit from name_add_mac_suffix
+captive_portal:
+improv_serial:
 
 web_server:
   local: true
   css_url: ""
   js_url: ""
+  ota: false
 
 api:
 
