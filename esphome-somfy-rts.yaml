@@ -6,7 +6,7 @@ esphome:
     - EEPROM
     - legion2/Somfy_Remote_Lib@0.4.1
   includes:
-    - somfy_arduino_cover.h
+    - somfy_esphome_cover.h
 
 esp8266:
   board: d1_mini
