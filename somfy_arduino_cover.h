@@ -1,24 +1,22 @@
 #include "esphome.h"
-#include <EEPROMRollingCodeStorage.h>
+#include <RollingCodeStorage.h>
 #include <SomfyRemote.h>
 
 #define COVER_UNKNOWN 0.5f
+#define TAG "somfy"
 
 class SomfyArduinoCover : public Cover
 {
 private:
     SomfyRemote *remote;
-    EEPROMRollingCodeStorage *storage;
 
 public:
     uint32_t remoteCode;
-    int eepromAddress;
 
-    SomfyArduinoCover(byte emitterPin, uint32_t remoteCode, int eepromAddress)
-        : Cover(), remoteCode(remoteCode), eepromAddress(eepromAddress)
+    SomfyArduinoCover(byte emitterPin, uint32_t remoteCode, RollingCodeStorage *storage)
+        : Cover(), remoteCode(remoteCode)
     {
         set_device_class("shutter");
-        storage = new EEPROMRollingCodeStorage(eepromAddress);
         remote = new SomfyRemote(emitterPin, remoteCode, storage);
         remote->setup();
     }
@@ -39,15 +37,18 @@ public:
             float pos = *call.get_position();
             if (pos == COVER_OPEN)
             {
+                ESP_LOGD(TAG, "Remote code: %06X command: %02X", remoteCode, Command::Up);
                 remote->sendCommand(Command::Up);
             }
             else if (pos == COVER_CLOSED)
             {
+                ESP_LOGD(TAG, "Remote code: %06X command: %02X", remoteCode, Command::Down);
                 remote->sendCommand(Command::Down);
             }
         }
         if (call.get_stop())
         {
+            ESP_LOGD(TAG, "Remote code: %06X command: %02X", remoteCode, Command::My);
             remote->sendCommand(Command::My);
         }
         this->position = COVER_UNKNOWN;
@@ -56,14 +57,34 @@ public:
 
     void program()
     {
+        ESP_LOGD(TAG, "Remote code: %06X command: %02X", remoteCode, Command::Prog);
         remote->sendCommand(Command::Prog);
     }
+};
 
-    int rollingCode()
+struct RollingCode
+{
+    uint16_t nextCode = 0;
+} PACKED; // NOLINT
+
+class PreferencesRollingCodeStorage : public RollingCodeStorage
+{
+private:
+    ESPPreferenceObject preferences;
+
+public:
+    PreferencesRollingCodeStorage(uint32_t remoteCode)
     {
-        uint16_t rollingCode;
-        EEPROM.get(eepromAddress, rollingCode);
-        return rollingCode;
+        preferences = global_preferences->make_preference<RollingCode>(remoteCode, true);
+    }
+    uint16_t nextCode() override
+    {
+        RollingCode code;
+        preferences.load(&code);
+        ESP_LOGD(TAG, "Rolling code: %04X", code.nextCode);
+        code.nextCode++;
+        preferences.save(&code);
+        return code.nextCode--;
     }
 };
 
@@ -81,7 +102,10 @@ public:
         uint32_t remoteCode = remoteCodeFromMac();
         for (int i = 0; i < coverCount; i++)
         {
-            addCover(remoteCode + i);
+            auto storage = new PreferencesRollingCodeStorage(remoteCode);
+            auto cover = new SomfyArduinoCover(emitterPin, remoteCode, storage);
+            covers.push_back(cover);
+            remoteCode++;
         }
     }
 
@@ -91,12 +115,5 @@ public:
         get_mac_address_raw(mac);
         uint32_t remoteCode = (((uint32_t)mac[3]) << 16) | (((uint32_t)mac[4]) << 8) | ((uint32_t)mac[5]);
         return remoteCode;
-    }
-
-    void addCover(uint32_t remoteCode)
-    {
-        int eepromCodeSize = sizeof(uint16_t);
-        auto cover = new SomfyArduinoCover(emitterPin, remoteCode, eepromCodeSize * covers.size());
-        covers.push_back(cover);
     }
 };

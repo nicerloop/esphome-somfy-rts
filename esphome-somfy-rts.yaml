@@ -29,7 +29,6 @@ cover:
     lambda: |-
       byte emitter_pin = D1;
       int cover_count = 16;
-      EEPROM.begin(cover_count * sizeof(uint16_t));
       auto somfy_remote = new SomfyArduinoRemote(emitter_pin, cover_count);
       App.register_component(somfy_remote);
       return somfy_remote->covers;
@@ -76,38 +75,12 @@ button:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_01))->program();
   - platform: template
-    name: "Cover 01 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 01 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_01))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_01))->rollingCode()",
-            ]
-  - platform: template
     name: "Cover 02 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_02))->program();
-  - platform: template
-    name: "Cover 02 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 02 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_02))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_02))->rollingCode()",
-            ]
   - platform: template
     name: "Cover 03 Prog"
     entity_category: config
@@ -116,38 +89,12 @@ button:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_03))->program();
   - platform: template
-    name: "Cover 03 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 03 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_03))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_03))->rollingCode()",
-            ]
-  - platform: template
     name: "Cover 04 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_04))->program();
-  - platform: template
-    name: "Cover 04 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 04 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_04))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_04))->rollingCode()",
-            ]
   - platform: template
     name: "Cover 05 Prog"
     entity_category: config
@@ -156,38 +103,12 @@ button:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_05))->program();
   - platform: template
-    name: "Cover 05 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 05 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_05))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_05))->rollingCode()",
-            ]
-  - platform: template
     name: "Cover 06 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_06))->program();
-  - platform: template
-    name: "Cover 06 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 06 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_06))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_06))->rollingCode()",
-            ]
   - platform: template
     name: "Cover 07 Prog"
     entity_category: config
@@ -196,38 +117,12 @@ button:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_07))->program();
   - platform: template
-    name: "Cover 07 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 07 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_07))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_07))->rollingCode()",
-            ]
-  - platform: template
     name: "Cover 08 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_08))->program();
-  - platform: template
-    name: "Cover 08 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 08 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_08))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_08))->rollingCode()",
-            ]
   - platform: template
     name: "Cover 09 Prog"
     entity_category: config
@@ -236,38 +131,12 @@ button:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_09))->program();
   - platform: template
-    name: "Cover 09 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 09 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_09))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_09))->rollingCode()",
-            ]
-  - platform: template
     name: "Cover 10 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_10))->program();
-  - platform: template
-    name: "Cover 10 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 10 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_10))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_10))->rollingCode()",
-            ]
   - platform: template
     name: "Cover 11 Prog"
     entity_category: config
@@ -276,38 +145,12 @@ button:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_11))->program();
   - platform: template
-    name: "Cover 11 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 11 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_11))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_11))->rollingCode()",
-            ]
-  - platform: template
     name: "Cover 12 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_12))->program();
-  - platform: template
-    name: "Cover 12 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 12 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_12))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_12))->rollingCode()",
-            ]
   - platform: template
     name: "Cover 13 Prog"
     entity_category: config
@@ -316,38 +159,12 @@ button:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_13))->program();
   - platform: template
-    name: "Cover 13 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 13 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_13))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_13))->rollingCode()",
-            ]
-  - platform: template
     name: "Cover 14 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_14))->program();
-  - platform: template
-    name: "Cover 14 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 14 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_14))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_14))->rollingCode()",
-            ]
   - platform: template
     name: "Cover 15 Prog"
     entity_category: config
@@ -356,35 +173,9 @@ button:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_15))->program();
   - platform: template
-    name: "Cover 15 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 15 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_15))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_15))->rollingCode()",
-            ]
-  - platform: template
     name: "Cover 16 Prog"
     entity_category: config
     icon: "mdi:wrench"
     on_press:
       - lambda: |-
           ((SomfyArduinoCover*)id(cover_16))->program();
-  - platform: template
-    name: "Cover 16 State"
-    entity_category: config
-    disabled_by_default: true
-    icon: "mdi:wrench"
-    on_press:
-      - logger.log:
-          format: "Cover 16 remoteCode:%08X rollingCode:%04X"
-          args:
-            [
-              "((SomfyArduinoCover*)id(cover_16))->remoteCode",
-              "((SomfyArduinoCover*)id(cover_16))->rollingCode()",
-            ]
