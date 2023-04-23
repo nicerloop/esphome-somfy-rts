@@ -53,13 +53,13 @@ To use [Improv WiFi serial](https://www.improv-wifi.com/serial/) configuration, 
 - the [Improv WiFi serial client](https://github.com/nicerloop/improv-wifi-serial-client) from the command line
 
 ## Connection
-The [ESPHome](https://esphome.io) device is automatically exposed any [Home Assistant](https://www.home-assistant.io) instance using the [native API](https://esphome.io/components/api.html).
+The [ESPHome](https://esphome.io) device is automatically exposed to any [Home Assistant](https://www.home-assistant.io) instance using the [native API](https://esphome.io/components/api.html).
 
 Note that the default [native API](https://esphome.io/components/api.html) configuration make the ESP reboot automatically when no client is connected to the API for 15 minutes.
 
 Each channel is materialized as:
-- one [cover](https://www.home-assistant.io/integrations/cover/) with assumed state and Up, Stop, Down buttons
-- one 'Prog' [button](https://www.home-assistant.io/integrations/button/)
+- one [cover](https://www.home-assistant.io/integrations/cover/) with assumed state and UP, STOP, DOWN buttons
+- one PROG [button](https://www.home-assistant.io/integrations/button/)
 
 These materializations are also available through the [ESPHome web server](https://esphome.io/components/web_server.html) directly from the ESP device (default: http://somfy-rts-XXXXXX.local)
 
@@ -69,7 +69,7 @@ To register one channel to control a cover:
 2. press PROG for 5 seconds on an already paired cover remote
 3. the cover will shortly move up and down to acknowledge switching to PROG mode
 4. press PROG on the desired remote or channel button
-3. the cover will shortly move up and down to acknowledge registering the new remote
+5. the cover will shortly move up and down to acknowledge registering the new remote
 
 ## Unregister remote channel
 Replay the same steps as for registering the remote channel. After the second acknowledgement, the remote channel will be unregistered from the cover.
